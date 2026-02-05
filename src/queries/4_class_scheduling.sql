@@ -2,6 +2,9 @@
 .mode column
 
 -- 4.1 
+SELECT class_id, class_name
+FROM class_schedule
+JOIN classes on class_schedule.class_id = classes.class_id
 
 
 -- 4.2 
