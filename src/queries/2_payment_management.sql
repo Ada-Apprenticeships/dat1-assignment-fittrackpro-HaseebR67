@@ -19,13 +19,13 @@ VALUES (
 );
 
 -- 2.2 
-SELECT strftime('%Y-%m', payment_date) AS month 
+SELECT strftime('%Y-%m', payment_date) AS month,
 SUM(amount) AS total_revenue 
 FROM payments
 WHERE payment_type = 'Monthly membership fee'
 AND payment_date >= '2024-11-01'
 AND payment_date < '2025-03-01'
-GROUP BY stfrtime('%y-5m', payment_date)
+GROUP BY strftime('%Y-%m', payment_date) 
 ORDER BY month;
 
 
