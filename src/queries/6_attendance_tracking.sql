@@ -39,4 +39,15 @@ GROUP BY day_of_week
 ORDER BY visit_count DESC; 
 
 -- 6.4 
-
+SELECT locations.name AS locations_name, AVG(daily_count) AS avg_daily_attendance 
+FROM(
+    SELECT 
+    attendance.location_id, 
+    DATE(attendance.check_in_time) AS day, 
+    COUNT(*) AS daily_count 
+    FROM attendance
+    GROUP BY attendance.location_id, DATE(attendance.check_in_time)
+)
+AS daily_counts
+JOIN locations ON daily_counts.location_id = locations.location_id 
+GROUP BY locations.location_id;
