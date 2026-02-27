@@ -32,9 +32,8 @@ CASE strftime('%w', check_in_time)
     WHEN '5' THEN 'Friday'
     WHEN '6' THEN 'Saturday' 
 END AS day_of_week, 
-COUNT(*) AS visit_count
+COUNT(DISTINCT member_id) AS visit_count
 FROM attendance 
-WHERE check_out_time IS NOT NULL 
 GROUP BY day_of_week
 ORDER BY visit_count DESC; 
 

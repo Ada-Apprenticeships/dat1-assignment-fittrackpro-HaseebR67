@@ -11,7 +11,7 @@ SET phone_number = '07000 100005', email = 'emily.jones.updated@email.com'
 WHERE member_id = 5;
 
 -- 1.3
-SELECT COUNT(*)
+SELECT COUNT(*) AS total_members
 FROM members; 
 
 
@@ -20,6 +20,7 @@ SELECT members.member_id,first_name,last_name, COUNT(class_attendance.member_id)
 FROM class_attendance
 JOIN members
 ON class_attendance.member_id = members.member_id
+WHERE class_attendance.attendance_status = 'Registered'
 GROUP BY members.member_id
 ORDER BY registration_count DESC
 LIMIT 1;
@@ -29,6 +30,7 @@ SELECT members.member_id,first_name,last_name, COUNT(class_attendance.member_id)
 FROM class_attendance
 JOIN members
 ON class_attendance.member_id = members.member_id
+WHERE class_attendance.attendance_status = 'Registered'
 GROUP BY members.member_id
 ORDER BY registration_count ASC
 LIMIT 1;

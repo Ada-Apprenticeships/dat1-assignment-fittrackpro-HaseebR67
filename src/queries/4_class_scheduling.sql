@@ -2,7 +2,7 @@
 .mode column
 
 -- 4.1 
-SELECT classes.class_id, classes.name AS class_name,  staff.first_name || ' ' || staff.last_name AS instructor_name
+SELECT DISTINCT classes.class_id, classes.name AS class_name,  staff.first_name || ' ' || staff.last_name AS instructor_name
 FROM classes 
 JOIN class_schedule ON classes.class_id = class_schedule.class_id
 JOIN staff ON class_schedule.staff_id = staff.staff_id; 
@@ -17,8 +17,8 @@ WHERE DATE(class_schedule.start_time) = '2025-02-01'
 GROUP BY class_schedule.schedule_id;
 
 -- 4.3 
-INSERT INTO class_attendance (schedule_id, member_id)
-VALUES (1,11); 
+INSERT INTO class_attendance (schedule_id, member_id, attendance_status)
+VALUES (1,11, 'Registered'); 
 
 -- 4.4 
 DELETE FROM class_attendance 
