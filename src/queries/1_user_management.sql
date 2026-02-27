@@ -34,10 +34,11 @@ ORDER BY registration_count ASC
 LIMIT 1;
 
 -- 1.6
-SELECT COUNT(class_attendance.member_id) AS COUNT
-FROM class_attendance
-JOIN members
-ON class_attendance.member_id = members.member_id
-WHERE attendance_status = 'Attended'
-GROUP BY class_attendance.member_id
-HAVING Count >= 2; 
+SELECT COUNT(*) AS Count
+FROM (
+    SELECT member_id
+    FROM class_attendance
+    WHERE attendance_status = 'Attended'
+    GROUP BY member_id
+    HAVING COUNT(*) >= 2
+) AS attended_twice;
